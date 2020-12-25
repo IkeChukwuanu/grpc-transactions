@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+option go_package = "github.com/joshikeno/go/grpc/server/proto";
+
+package transactions;
+
+enum Currency {
+  USD = 0;
+  GBP = 1;
+}
+
+message Cash {
+  Currency currency = 1;
+  float ammount = 2;
+}
+
+message Summary {
+  Cash balance = 1;
+  Transaction lastTransaction = 2;
+}
+
+enum Type {
+  D = 0;
+  C = 1;
+}
+
+message Ref {
+  string id = 1;
+  string provider = 2;
+}
+
+message Timestamp {
+  int64 now = 1;
+  string format = 2;
+}
+
+message Action {
+  Cash cash = 1;
+  Ref ref = 2;
+  Type type = 3;
+  Timestamp timestamp = 4;
+}
+
+enum Status {
+  COMMITTED = 0;
+  ROLLBACK = 1;
+}
+
+message Reaction {
+  Cash prevBalance = 1;
+  Cash balance = 2;
+  Status status = 3;
+}
+
+message Token {
+  string id = 1;
+}
+
+message Transaction {
+  Token token = 1;
+  Action action = 2;
+  Reaction reaction = 3;
+}
+
+message History {
+  repeated Transaction data = 1;
+}
+
+service Transactions {
+  rpc Debit(Action) returns (Reaction) {}
+  rpc Credit(Action) returns (Reaction) {}
+  // rpc Transfer(TransferRequest) returns (TransferResponse) {}
+  rpc GetBalance(Token) returns (Summary) {}
+}

@@ -1,0 +1,64 @@
+[
+  {
+    "token": {
+      "id": "zambam"
+    },
+    "action": {
+      "cash": {
+        "currency": "USD",
+        "ammount": 100.0
+      },
+      "ref": {
+        "id": "1102",
+        "provider": "strip"
+      },
+      "type": "D",
+      "timestamp": {
+        "format": "unix",
+        "now": 1590636061
+      }
+    },
+    "reaction": {
+      "prevBalance": {
+        "currency": "USD",
+        "ammount": 2000.0
+      },
+      "balance": {
+        "currency": "USD",
+        "ammount": 1900.0
+      },
+      "status": ["commit", "rollback"]
+    }
+  },
+  {
+    "token": {
+      "id": "casaluba"
+    },
+    "action": {
+      "cash": {
+        "currency": "GBP",
+        "ammount": 10000.0
+      },
+      "ref": {
+        "id": "1011",
+        "provider": "paypal"
+      },
+      "type": "C",
+      "timestamp": {
+        "format": "unix",
+        "now": 1590636052
+      }
+    },
+    "reaction": {
+      "prevBalance": {
+        "currency": "USD",
+        "ammount": 77000.0
+      },
+      "balance": {
+        "currency": "USD",
+        "ammount": 87000.0
+      },
+      "status": ["commit", "rollback"]
+    }
+  }
+]
